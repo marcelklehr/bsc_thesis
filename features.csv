@@ -1,0 +1,11 @@
+tool,web,foss,recruiting_flexibility,sharable_customizations,framework,catalogue,interactivity,dynamicity,multimedia,implementation_flexibility
+OpenSesame,\checkmark,\checkmark,\checkmark,,\checkmark,\checkmark,,\checkmark,\checkmark,\checkmark
+PsyToolkit,\checkmark,\checkmark,\checkmark,,\checkmark,\checkmark,,,?,\checkmark
+psiTurk,\checkmark,\checkmark,,,,,,,,
+jsPsych,\checkmark,\checkmark,\checkmark,\checkmark,,\checkmark,,,\checkmark,\checkmark
+LIONESS-lab,\checkmark,\checkmark,\checkmark,,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark
+Labvanced,\checkmark,,\checkmark,?,\checkmark,\checkmark,\checkmark,?,\checkmark,\checkmark
+zTree,,\checkmark,,?,\checkmark,\checkmark,\checkmark,?,?,
+Dallinger,,\checkmark,,,,,\checkmark,?,,
+lab.js,\checkmark,\checkmark,,\checkmark,\checkmark,,,?,,\checkmark
+magpie,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark,\checkmark
