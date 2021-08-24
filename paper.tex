@@ -117,11 +117,11 @@ In the social and behavioral sciences, web-based experiments allow experimenters
 
 
 \chapter{Introduction}
-Web-based experiments are gaining more popularity in behavioural research because of their flexibility and efficiency. I conducted an analsysis of prior art and found that many existing tools for realizing web-based experiments lack sufficient flexibility and expressiveness. This lead to the creation of magpie, both a server for managing experiments and a client-side framework for implementing them.
+Web-based experiments are gaining more popularity in behavioural research because of their flexibility and efficiency. I conducted an analysis of prior art and found that many existing tools for realizing web-based experiments lack sufficient flexibility and expressiveness. This lead to the creation of magpie, both a server for managing experiments and a client-side framework for implementing them.
 
 Magpie experiments can be run directly on a local computer and published online with ease. They can also be shared in an editable format and reused or adapted, enabling transparent replications and facilitating open science. Magpie is provided free of charge under an open-source license.
 
-In this work, I initially examine prior work and competing software products with a set of requirements in mind. In the following section I explore the design goals and choices in relation to these requirements that lead to the implementation of magpie's client-side framework, its concepts, components, features and technical realization. Afterwards, I discuss limitations of the current design and directions for furture work. Finally, I reach conclusions about the design and its applications.
+In this work, I initially examine prior work and competing software products with a set of requirements in mind. In the following section I explore the design goals and choices in relation to these requirements that lead to the implementation of magpie's client-side framework, its concepts, components, features and technical realization. Afterwards, I discuss limitations of the current design and directions for future work. Finally, I reach conclusions about the design and its applications.
 
 In addition to this document, this thesis includes the creation of the full online documentation of magpie available at \url{https://magpie-manual.netlify.app} and \url{https://magpie-reference.netlify.app}.
 
@@ -148,7 +148,7 @@ Using an extension called OSWeb, experiments built with OpenSesame can be run in
 
 \textbf{PsyToolkit} \citep{Stoet2012} is an all-in-one solution for web-based experiments, offering study design, hosting and even data analysis. It appears mainly geared toward students who need a simple solution to run their experiments and implements a custom imperative, rather simplistic scripting language for realizing experiments, which doesn't allow for much experimental complexity or customization. It does not allow for interactivity or dynamicity.
 
-\textbf{psiTurk} \citep{Gureckis2016} is mainly a server-side framework for integrating web-based experiments with Amazon Mechanical Turk and cannot be used with other recruiting platforms. It only aids minimally in developing the actual experiments and thus has to be combined with a different front-end framwork.
+\textbf{psiTurk} \citep{Gureckis2016} is mainly a server-side framework for integrating web-based experiments with Amazon Mechanical Turk and cannot be used with other recruiting platforms. It only aids minimally in developing the actual experiments and thus has to be combined with a different front-end framework.
 
 \textbf{jsPsych} \citep{Leeuw2015} in contrast offers a JavaScript interface to build experiments, theoretically allowing implementers to take advantage of the power of the web platform. It interoperates with JATOS \citep{Lange2015} as a backend and offers a wide range of pre-built templates called "plugins" to be used for experiments. However, beyond the existing templates, implementing custom functionality and recombining different templates is non-trivial as there are no built-in components and no simple built-in framework for assembling custom trials. Interactivity and dynamicity are not offered.
 
@@ -169,7 +169,7 @@ See Table \ref{tab:competition} for an overview and comparison with magpie. Ques
                       & \rot{OpenSesame} & \rot{PsyToolkit} & \rot{psiTurk}    & \rot{jsPsych}    & \rot{LIONESS-lab} & \rot{Labvanced}  & \rot{zTree}      & \rot{Dallinger}  & \rot{lab.js}     & \rot{magpie}     \\
 Web                        & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark  & \checkmark &            & \checkmark & \checkmark & \checkmark \\
 Free software              & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark  &            & \checkmark & \checkmark & \checkmark & \checkmark \\
-Reruiting flexibility      & \checkmark & \checkmark &            & \checkmark & \checkmark  & \checkmark &            &            &            & \checkmark \\
+Recruiting flexibility      & \checkmark & \checkmark &            & \checkmark & \checkmark  & \checkmark &            &            &            & \checkmark \\
 Sharable customizations    &            &            &            & \checkmark &             & ?          & ?          &            & \checkmark & \checkmark \\
 Framework                  & \checkmark & \checkmark &            &            & \checkmark  & \checkmark & \checkmark &            & \checkmark & \checkmark \\
 Catalogue                  & \checkmark & \checkmark &            & \checkmark & \checkmark  & \checkmark & \checkmark &            &            & \checkmark \\
@@ -196,7 +196,7 @@ A main goal of designing magpie was to provide implementers with a conceptually 
 
 A key concept for bridging this divide is modularity and composability: Offering a catalogue of building blocks in varying granularity to ease assembly of simple experiments with larger, more rigid components, but also allowing intricate customization via smaller, flexible components that integrate with each other.
 
-To this end, taking advantage of Vue.js allows for fast progress and interoperability with a large catalogue of open source modules already built on that same framework, while avoiding mistakes that others have already made and corrected. Choosing a reactive framework is a major benefit for implementation effiency, because the view layer updates automatically based on the provided data, reducing the amount of necessary code.
+To this end, taking advantage of Vue.js allows for fast progress and interoperability with a large catalogue of open source modules already built on that same framework, while avoiding mistakes that others have already made and corrected. Choosing a reactive framework is a major benefit for implementation efficiency, because the view layer updates automatically based on the provided data, reducing the amount of necessary code.
 
 A graphical editor is explicitly not part of the scope of this project at the moment. The emphasis on free customizability necessitates the use of a programming language rather than the limited freedom of a graphical editor. However, building a graphical editor on top of magpie is still possible in future work.
 
@@ -223,7 +223,7 @@ Anytime during a screen, result data rows can be saved directly which will be se
 Magpie provides basic stimulus components like playing audio files, video files, displaying image files, text, a self-paced reading component, a tone Synthesizer and a canvas for displaying dynamic visual stimuli. Responses can be recorded using dropdowns, a forced choice input, a single and a matrix multiple choice input, a slider, a rating scale, a free text box, a key press input, a constant sum range slider, an image selection input, a text completion input and a rank order input.
 
 These finer grained components offer essential features that can be recombined in a variety of ways to form trials of any complexity.
-To ease the building of experiments, there are many pre-built screen components available. These allow the quick assembly of simple experiments out of coarse building blocks, which utilize the above fine graned building blocks under the hood. These trial screens follow a life cycle of five slides: pause, fixation, stimulus presentation, response collection and feedback. All phases except response collection are optional, and all phases can be configured with a timeout or a manual trigger to go to the next phase. Additionally, implementers can add textual context like a Question. There are also slots available for each of the four life cycle phases, that can be filled with custom content.
+To ease the building of experiments, there are many pre-built screen components available. These allow the quick assembly of simple experiments out of coarse building blocks, which utilize the above fine graned building blocks under the hood. These trial screens follow a life cycle of five slides: pause, fixation, stimulus presentation, response collection and feedback. All phases except response collection are optional, and all phases can be configured with a timeout or a manual trigger to go to the next phase. Additionally, implementers can add textual context like a Question. There are also slots available for each of the four life cycle phases that can be filled with custom content.
 
 All screen components allow setting a screen title and a progress percentage which will be displayed in a progress bar.
 
@@ -274,7 +274,7 @@ After the trial screens are completed the code shows a post-test screen (s. line
 \subsection{Example 2: Simon Task}
 The following example shows the code for a Simon Task experiment. The code in this example leaves out the instructions to the participants. The code iterates over a list of trial objects, defined elsewhere and constructs a new KeypressScreen for each.
 
-The screen will first display a fixation cross for a random duration between 1200ms and 2700ms, specified by the \texttt{fixation-time} attribute. Afterwards, the simulus is displayed allowing a response with the Q and P keys. The response is stored in \texttt{\$magpie.measurements.response}. The stimuli are displayed using the built-in canvas components, displaying the square or circle left or right of the screen. The Record component adds the trial data to the result measurements. The \texttt{response-time} attribute sets a timeout of three seconds to respond, after which the participant is shown the feedback screen which tells them to respond more quickly if they haven't responded yet.
+The screen will first display a fixation cross for a random duration between 1200ms and 2700ms, specified by the \texttt{fixation-time} attribute. Afterwards, the stimulus is displayed allowing a response with the Q and P keys. The response is stored in \texttt{\$magpie.measurements.response}. The stimuli are displayed using the built-in canvas components, displaying the square or circle left or right of the screen. The Record component adds the trial data to the result measurements. The \texttt{response-time} attribute sets a timeout of three seconds to respond, after which the participant is shown the feedback screen which tells them to respond more quickly if they haven't responded yet.
 
 After the trial screens are completed the code shows a post-test screen, which asks the participants for demographic information. Finally the last screen will submit the data to the server and thank the participant when everything is completed.
 
